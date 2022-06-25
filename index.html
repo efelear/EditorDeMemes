@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body class="modoOscuro">
+    
+    <header>
+        <h1 class="header-titulo">Generador de Memes</h1>
+        <div class="contenedor-botones">
+            <button class="boton botonImg"><i class="far fa-image"></i> Imagen</button>
+            <button class="boton botonText"><i class="fas fa-font"></i> Texto</button>
+
+            <button class="boton" id="botonCambioModos"><i class="fas fa-lightbulb"></i> <span id="nombreBoton"> Modo Oscuro </span></button>
+        </div>
+    </header>
+    
+    <main class="main">
+        <div class="meme-container">
+            <p class="meme-text" id="textoArriba">Texto Superior</p>
+            <div src="" alt="" aria-label="Imagen del meme" class="canvas" id="imgMeme"></div>
+            <p class="meme-text" id="textoAbajo">Texto Inferior</p>
+        </div>
+        <button class="boton boton-descargar" id="descargarMeme"><i class="fas fa-download"></i>descargar meme</button>
+    </main>
+
+    <aside class="panel ocultar">
+        <button class="botonCerrarPanel" id="panel-close-button" aria-label="Cerrar panel">
+            <i class="fas fa-window-close"></i> 
+        </button>
+        
+        <section class="panel-img" id="panel-img">
+            
+            <h2 class="tituloPanel">IMAGEN</h2>
+            <div>
+                <h3 class="titulo-panel-contol">URL</h3>
+                <input type="url" class="inputPanelControl" id="urlMeme" aria-label="URL de imagen">
+            </div>
+       
+            <div class="panel-control">
+                <h3 class="tituloPanelControl">FONDO</h3>
+                <div class="contenedor">
+                    <div class="divInterno marginRight">
+                        <input id="inputFondo" type="color" value="#FFFFFF" aria-label="Color de fondo de imagen">
+                        <span class="valorInput" id="spanInputFondo">#FFFFFF</span>
+                    </div>
+                    <div class="columnas-panel-control">
+                        <select aria-label="Modo de mezcla de fondo de imagen" id="inputMezcla" class="divInterno width">
+                            <option value="unset" selected="selected">Ninguno</option>
+                            <option value="lighten">Aclarar</option>
+                            <option value="darken">Oscurecer</option>
+                            <option value="difference">Diferencia</option>
+                            <option value="luminosity">Luminosidad</option>
+                            <option value="multiply">Multiplicar</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="panel-control">
+                <h3 class="tituloPanelControl">FILTROS</h3>
+                <div class="panel-control-deslizable">
+                    <label for="brightness">BRILLO</label>
+                    <input type="range" id="brillo" min="0" max="1" value="1" step="0.1">
+                </div>
+                <div class="panel-control-deslizable">
+                    <label for="opacity">OPACIDAD</label>
+                    <input type="range" id="opacidad" min="0" max="1" value="1" step="0.1">
+                </div>
+                <div class="panel-control-deslizable">
+                    <label for="contrast">CONTRASTE</label>
+                    <input type="range" id="contraste" min="100" max="1000" value="100">
+                </div>
+                <div class="panel-control-deslizable">
+                    <label for="blur">DESENFOQUE</label>
+                    <input type="range" id="desenfoque" min="0" max="10" value="0" step="0.1">
+                </div>
+                <div class="panel-control-deslizable">
+                    <label for="grayscale">ESCALA DE GRISES</label>
+                    <input type="range" id="grises" min="0" max="100" value="0">
+                </div>
+               
+                <div class="panel-control-deslizable">
+                    <label for="sepia">SEPIA</label>
+                    <input type="range" id="sepia" min="0" max="100" value="0">
+                </div>
+                <div class="panel-control-deslizable">
+                    <label for="hue">HUE</label>
+                    <input type="range" id="hue" min="0" max="360" value="0">
+                </div>
+                <div class="panel-control-deslizable">
+                    <label for="saturate">SATURADO</label>
+                    <input type="range" id="saturado" min="100" max="1000" value="100" step="10">
+                </div>
+                <div class="panel-control-deslizable">
+                    <label for="invert">NEGATIVO</label>
+                    <input type="range" id="negativo" min="0" max="1" value="0" step="0.1">
+                </div>
+            </div>
+            <button class="boton botonesFondo boton-restablecer" id="botonRestablecer">Reestablecer filtros</button>
+        </section>
+      
+        <section class="panel-text ocultar" id="panel-text">
+    
+            <h2 class="tituloPanel">TEXTO</h2>
+        
+            <div>
+                <h3 class="tituloPanelControl">SUPERIOR</h3>
+                <textarea aria-label="Texto superior" class="inputPanelControl" id="inpTextSup" cols="30" rows="10">TEXTO SUPERIOR</textarea>
+                <div>
+                    <input type="checkbox" id="sinTextoArriba"><label for="sin-Texto-Arriba">Sin texto superior</label>
+                </div>
+            </div>
+            <div>
+                <h3 class="tituloPanelControl">INFERIOR</h3>
+                <textarea aria-label="Texto Inferior" class="inputPanelControl" id="inpTexAba" cols="30" rows="10">TEXTO INFERIOR</textarea>
+                <div>
+                    <input type="checkbox" id="sinTextoAbajo"><label for="sin-Texto-Abajo">Sin texto inferior</label>
+                </div>
+            </div>
+         
+            <div>
+                <h3 class="tituloPanelControl">FUENTE</h3>
+                
+                <select name="Tipos de fuente" id="fuente" class="inputPanelControl" aria-label="Tipos de fuete">
+                    <option value="Arial">Arial</option>
+                    <option value="Arial Black">Arial Black</option>
+                    <option value="American Typewriter">American Typewriter</option>
+                    <option value="Andale Mono">Andale Mono</option>
+                    <option value="Comic Sans MS">Comic Sans MS</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                </select>
+                <div class="contenedor">
+                    <input type="number" class="inputPanelControl" id="tamanioFuente" aria-label="Tamaño de fuente" min="12" max="80" value="40">
+                    <div class="botonesAlineacion">
+                        <button id="alineacionIzq" class="boton botonAlineacion"><i class="fas fa-align-left"></i></button>
+                        <button id="alineacionCen" class="boton botonAlineacion"><i class="fas fa-align-center"></i></button>
+                        <button id="alineacionDer" class="boton botonAlineacion"><i class="fas fa-align-right"></i></button>
+                    </div>
+                </div>
+            </div>
+          
+            <div>
+                <div class="divColor">
+                    
+                    <div class="divColorTexto">
+                        <h3 class="tituloPanelControl">COLOR</h3>
+                        <div class="divInterno">
+                            <input id="inpColorTxt" type="color" value="#000000" aria-label="color de texto">
+                            <span id="spanColorTxt" class="valorInput">#000000</span>
+                        </div>
+                    </div>
+                   
+                    <div class="divColorTexto">
+                        <h3 class="tituloPanelControl">FONDO</h3>
+                        <div class="divInterno">
+                            <input id="inputFondoTexto" type="color" value="#FFFFFF" aria-label="Color del fondo del texto">
+                            <span id="spanFondoTexto" class="valorInput">#FFFFFF</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <input id="fondoTransparente" type="checkbox"><label for="sin-background-checkbox">Fondo transparente</label>
+                </div>
+                
+            </div>
+        
+            <div>
+                <h3 class="tituloPanelControl">CONTORNO</h3>
+                <div class="contenedor">
+                    <button id="sinContorno" class="boton botonesFondo">Ninguno</button>
+                    <button id="contClaro" class="boton botonesFondo">Claro</button>
+                    <button id="contOscuro" class="boton botonesFondo">Oscuro</button>
+                </div>
+            </div>
+          
+            <div>
+                <h3 class="tituloPanelControl">ESPACIADO</h3>
+                <input type="number" id="espaciado" class="inputPanelControl" aria-label="espaciado" min="10" max="50" value="35">
+            </div>
+          
+        <div>
+            <h3 class="tituloPanelControl">INTERLINEADO</h3>
+            <select class="inputPanelControl" id="interlineado" aria-label="interlineado">
+            <option value="0.8">0.8</option>
+            <option value="1">1</option>
+            <option value="1.2" selected>1.2</option>
+            <option value="1.5">1.5</option>
+            <option value="2">2</option>
+            <option value="2.6">2.6</option>
+        </div>
+        </section>
+        
+        <script src="app.js"></script>
+
+    </aside>
+
+    
+</body>
+</html>
+    
